@@ -166,6 +166,7 @@
 </head>
 <body>
 
+    <!-- 1. 导航栏 -->
     <nav class="nav-bar">
         <div class="container nav-content">
             <div class="nav-logo">Li Zhiyuan</div>
@@ -180,6 +181,7 @@
         </div>
     </nav>
 
+    <!-- 2. 主内容 -->
     <main class="container">
         <section class="hero" id="hero">
             <div class="hero-text">
@@ -257,10 +259,12 @@
         </section>
     </main>
 
+    <!-- 3. 页脚（必须在 main 标签闭合之后） -->
     <footer>
         <p>&copy; 2024 李志远. Built with Vanilla JS & CSS. <br><span style="font-size:0.8em; opacity:0.7">Last updated: Oct 2024</span></p>
     </footer>
 
+    <!-- 4. JavaScript 代码 -->
     <script>
         // --- 1. Data Store (Easy to Edit) ---
         const resume = {
@@ -307,10 +311,10 @@
                 },
                 {
                      name: "个人公众号 (成长/阅读)",
-                    role: "主理人",
-                    date: "2023.10 - 2024.07",
-                    tags: ["内容运营", "新媒体"],
-                    desc: [
+                     role: "主理人",
+                     date: "2023.10 - 2024.07",
+                     tags: ["内容运营", "新媒体"],
+                     desc: [
                         "独立运营个人成长类公众号，累计发表原创文章50+篇。",
                         "坚持每周输出高质量技术随笔与读书笔记。",
                         "多篇文章被转载，吸引大量垂类粉丝。"
@@ -330,16 +334,28 @@
                     ]
                 }
             ],
-            media: [], // Merged into projects or keep empty if needed separatly, adjusted in logic above
+            media: [
+                {
+                    name: "抖音短视频运营",
+                    role: "创作者 / 主理人",
+                    date: "2026.04 - 至今",
+                    tags: ["短视频", "内容创作", "生活日常", "学习经验"],
+                    desc: [
+                        "2026年4月开始在抖音平台发布视频，抖音号：LizhiY1001。",
+                        "内容以生活日常记录与学习经验分享为主，持续输出个人成长相关内容。",
+                        "通过短视频形式沉淀学习方法与实战心得，探索个人IP与知识传播的结合。"
+                    ]
+                }
+            ],
             awards: [
                 "阿里云人工智能工程师 (ACP)",
                 "百度云AI工程师认证",
                 "AWS Certified Cloud Practitioner",
                 "NVIDIA DLI 深度学习基础认证",
-                "校级一等奖学金 (2025-2026学年)",
-                "【待补】中国国际大学生创新大赛",
+                "校级特等奖学金 (2025-2026学年)",
+                "2026年江苏省职业院校创新创业大赛省级一等奖",
                 "【待补】“挑战杯”课外学术科技竞赛",
-                "【待补】“海员大比武”技能竞赛 (2025)"
+                "【待补】第四届全国大学生职业规划大赛"
             ]
         };
 
@@ -379,10 +395,9 @@
         function renderExperience() {
             document.getElementById('projects').innerHTML = resume.projects.map(p => createCard(p, true)).join('');
             document.getElementById('leadership').innerHTML = resume.leadership.map(l => createCard(l)).join('');
-            // Note: Media items in resume object above were merged conceptually or can be rendered here if array is populated.
-            // Using placeholder logic for now if media array is empty in data.
+            // 渲染自媒体运营，并显示标签
             if(resume.media && resume.media.length > 0) {
-                 document.getElementById('media').innerHTML = resume.media.map(m => createCard(m)).join('');
+                 document.getElementById('media').innerHTML = resume.media.map(m => createCard(m, true)).join('');
             } else {
                  document.getElementById('media').innerHTML = `<p style="padding:1rem; text-align:center;">暂无内容，请在代码中配置。</p>`;
             }
